@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Radhe Radhe 🪈 Happy Birthday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ✦ EDIT YOUR CONTENT AT THE BOTTOM OF THIS FILE, IN THE
+   ✦ <script> BLOCK — LOOK FOR THE "CONFIG" SECTION.
+   ✦ To add real photos: create a folder named "images" next to
+   ✦ this HTML file, and drop photos named photo1.jpg, photo2.jpg
+   ✦ … up to photo8.jpg (or however many you set in CONFIG).
+   ✦ To add background music: place an MP3 file named "music.mp3"
+   ✦ in the SAME folder as this HTML file. The 🎵 button (bottom
+   ✦ right) will then let visitors play/pause it. If no music.mp3
+   ✦ is found, the button just fades out and shows a hint on tap.
+   ✦ To add a real gift video: place an MP4 file named
+   ✦ "gift-video.mp4" in the SAME folder as this HTML file. Tapping
+   ✦ the gift box will then play it full-screen. If no gift-video.mp4
+   ✦ is found, a 30-second photo slideshow (built from CONFIG.photos
+   ✦ below) automatically plays instead — so it's safe to leave this
+   ✦ out and add the real video later.
+   ✦ To use a real "Radhe Radhe" voice/chant for the welcome door
+   ✦ intro: place an MP3 file named "welcome.mp3" in the SAME folder
+   ✦ as this HTML file. If it's missing, the browser's built-in voice
+   ✦ will speak "Radhe Radhe" instead — so it's safe to leave this
+   ✦ out and add the real recording later.
+   ✦ To use a real Krishna picture on the welcome door (instead of
+   ✦ the drawn cartoon), place an image named "krishna-door.png"
+   ✦ inside the SAME "images" folder used for your photos. If it's
+   ✦ missing, the drawn baby Krishna is shown instead — so it's safe
+   ✦ to leave this out and add the picture later.
+   ✦ Background music now tries to play as soon as the page loads;
+   ✦ if the browser blocks that, it starts on the visitor's very
+   ✦ first tap anywhere on the page. It automatically pauses while
+   ✦ the gift slideshow/video is open and resumes after it closes.
+   ============================================================ */
+
+:root{
+  --indigo-deep:#080b24;
+  --indigo:#131a44;
+  --indigo-light:#232b62;
+  --peacock:#0e6e5c;
+  --peacock-light:#22a68b;
+  --gold:#d4af37;
+  --gold-light:#f3dd8e;
+  --marigold:#e8871e;
+  --rose:#e8637d;
+  --cream:#f8ecd4;
+  --font-display:'Yatra One', cursive;
+  --font-body:'Cormorant Garamond', serif;
+  --font-ui:'Poppins', sans-serif;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--indigo-deep);
+  color:var(--cream);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  position:relative;
+  min-height:100vh;
+}
+
+::selection{background:var(--gold); color:var(--indigo-deep);}
+
+/* ---------- ambient starfield ---------- */
+#stars{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, var(--gold-light) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 70% 60%, var(--gold-light) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 40% 80%, var(--cream) 0%, transparent 60%),
+    radial-gradient(2px 2px at 85% 20%, var(--cream) 0%, transparent 60%),
+    radial-gradient(1px 1px at 55% 45%, var(--gold-light) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 10% 65%, var(--cream) 0%, transparent 60%),
+    radial-gradient(1.5px 1.5px at 90% 85%, var(--gold-light) 0%, transparent 60%);
+  background-repeat:repeat;
+  background-size:300px 300px;
+  opacity:.5;
+  animation:twinkle 6s ease-in-out infinite alternate;
+}
+@keyframes twinkle{ from{opacity:.25;} to{opacity:.65;} }
+
+/* falling petals/feathers layer */
+#petals{position:fixed; inset:0; z-index:2; pointer-events:none; overflow:hidden;}
+.petal{
+  position:absolute; top:-10vh; font-size:22px; opacity:.85;
+  animation:fall linear forwards;
+  filter:drop-shadow(0 0 6px rgba(212,175,55,.35));
+}
+@keyframes fall{
+  0%{ transform:translateY(0) translateX(0) rotate(0deg); }
+  100%{ transform:translateY(115vh) translateX(var(--drift,40px)) rotate(360deg); }
+}
+
+/* ---------- loader ---------- */
+#loader{
+  position:fixed; inset:0; z-index:100; background:var(--indigo-deep);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  transition:opacity .9s ease, visibility .9s ease;
+}
+#loader.hide{opacity:0; visibility:hidden;}
+.chakra{
+  width:86px; height:86px; border-radius:50%;
+  border:2px solid rgba(212,175,55,.25);
+  border-top-color:var(--gold);
+  border-bottom-color:var(--peacock-light);
+  animation:spin 1.4s linear infinite;
+  position:relative;
+  margin-bottom:22px;
+}
+.chakra::after{
+  content:"ॐ"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:28px; color:var(--gold-light);
+  animation:spin-rev 1.4s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg);} }
+@keyframes spin-rev{ to{ transform:rotate(-360deg);} }
+#loader p{font-family:var(--font-ui); letter-spacing:.14em; text-transform:uppercase; font-size:.72rem; color:var(--gold-light); opacity:.8;}
+
+/* ---------- door welcome intro ---------- */
+#doorIntro{
+  position:fixed; inset:0; z-index:150;
+  display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(circle at 50% 42%, rgba(35,43,98,.95), var(--indigo-deep) 78%);
+  overflow:hidden; cursor:pointer; -webkit-tap-highlight-color:transparent;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+#doorIntro.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+.door-frame{ position:absolute; inset:0; perspective:1400px; display:flex; }
+.door-panel{
+  position:relative; width:50%; height:100%;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.3), transparent 14%, transparent 86%, rgba(0,0,0,.3)),
+    linear-gradient(160deg, #3a2210, #5a3418 45%, #3a2210);
+  box-shadow:inset 0 0 50px rgba(0,0,0,.55), 0 0 40px rgba(212,175,55,.12);
+  transition:transform 1.15s cubic-bezier(.6,0,.3,1);
+  transform-style:preserve-3d;
+}
+.door-panel::before{
+  content:""; position:absolute; inset:14px;
+  border:2px solid rgba(212,175,55,.55); border-radius:6px;
+  background:repeating-linear-gradient(90deg, rgba(212,175,55,.06) 0 2px, transparent 2px 26px);
+}
+.door-panel::after{
+  content:"🦚"; position:absolute; top:16px; left:50%; transform:translateX(-50%);
+  font-size:1.4rem; opacity:.7;
+}
+.door-left{ left:0; transform-origin:left center; border-right:3px solid var(--gold); }
+.door-right{ right:0; transform-origin:right center; border-left:3px solid var(--gold); }
+#doorIntro.open .door-left{ transform:rotateY(-108deg); }
+#doorIntro.open .door-right{ transform:rotateY(108deg); }
+
+.door-handle{
+  position:absolute; top:50%; width:14px; height:14px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold));
+  box-shadow:0 0 10px rgba(212,175,55,.6);
+}
+.door-left .door-handle{ right:20px; }
+.door-right .door-handle{ left:20px; }
+
+.door-welcome{
+  position:relative; z-index:5; display:flex; flex-direction:column; align-items:center;
+  transition:opacity .5s ease, transform .5s ease;
+}
+#doorIntro.open .door-welcome{ opacity:0; transform:scale(.8); pointer-events:none; }
+
+.baby-krishna{ width:120px; height:auto; max-height:180px; object-fit:contain; filter:drop-shadow(0 0 22px rgba(212,175,55,.4)); }
+.baby-krishna .k-flute{ animation:kflute 2.2s ease-in-out infinite; transform-origin:60px 81px; }
+@keyframes kflute{ 0%,100%{ transform:rotate(0deg);} 50%{ transform:rotate(-4deg);} }
+.baby-krishna .k-wave{ animation:kwave 1.6s ease-in-out infinite; transform-origin:92px 92px; }
+@keyframes kwave{ 0%,100%{ transform:rotate(0deg);} 25%{ transform:rotate(18deg);} 75%{ transform:rotate(-8deg);} }
+#doorIntro.greet .baby-krishna{ animation:krishnaGreet .7s ease; }
+@keyframes krishnaGreet{ 0%{ transform:scale(1) translateY(0);} 40%{ transform:scale(1.14) translateY(-10px);} 100%{ transform:scale(1) translateY(0);} }
+
+.door-welcome-text{ font-family:var(--font-display); color:var(--gold-light); font-size:1.5rem; margin-top:12px; text-shadow:0 0 20px rgba(212,175,55,.4); }
+.door-welcome-sub{ font-family:var(--font-ui); font-size:.78rem; color:var(--peacock-light); letter-spacing:.06em; margin-top:2px; }
+.door-tap-hint{ font-family:var(--font-ui); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:#cdbf9a; margin-top:14px; opacity:.85; animation:tapPulse 1.8s ease-in-out infinite; }
+@keyframes tapPulse{ 0%,100%{ opacity:.45;} 50%{ opacity:1;} }
+
+/* ---------- sections ---------- */
+section{
+  position:relative; z-index:3;
+  min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding:80px 22px;
+  scroll-snap-align:start;
+}
+.eyebrow{
+  font-family:var(--font-ui); font-size:.72rem; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--peacock-light); margin-bottom:14px; opacity:0; transform:translateY(14px);
+}
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity 1s ease, transform 1s ease; }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* feather decor */
+.feather{
+  position:absolute; width:130px; opacity:.5; pointer-events:none; filter:drop-shadow(0 0 18px rgba(14,110,92,.35));
+}
+.feather.f1{ top:4%; left:-30px; transform:rotate(-18deg); animation:float 9s ease-in-out infinite; }
+.feather.f2{ bottom:6%; right:-40px; transform:rotate(24deg) scaleX(-1); width:170px; animation:float 11s ease-in-out infinite reverse; }
+@keyframes float{ 0%,100%{ transform:translateY(0) rotate(-18deg);} 50%{ transform:translateY(-22px) rotate(-12deg);} }
+
+/* ---------- hero ---------- */
+#hero{ min-height:100svh; }
+.hero-glow{
+  position:absolute; width:520px; height:520px; border-radius:50%;
+  background:radial-gradient(circle, rgba(232,135,30,.28), rgba(14,110,92,.12) 55%, transparent 72%);
+  filter:blur(10px); z-index:0;
+}
+.flute{ font-size:2.4rem; margin-bottom:6px; }
+h1.title{
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(2.2rem, 8vw, 3.6rem);
+  color:var(--gold-light);
+  text-shadow:0 0 30px rgba(212,175,55,.35);
+  line-height:1.15;
+}
+h1.title .name{
+  display:block; color:var(--cream);
+  font-size:clamp(2.6rem, 11vw, 5rem);
+  background:linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 45%, var(--rose) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  margin-top:6px;
+}
+.subtitle{ font-family:var(--font-body); font-style:italic; font-size:clamp(1rem,3vw,1.3rem); max-width:520px; margin:20px auto 34px; color:#e7dcc0; opacity:.9; }
+.btn{
+  font-family:var(--font-ui); font-weight:500; font-size:.92rem; letter-spacing:.03em;
+  color:var(--indigo-deep); background:linear-gradient(90deg, var(--gold-light), var(--gold));
+  border:none; padding:15px 34px; border-radius:40px; cursor:pointer;
+  box-shadow:0 8px 26px rgba(212,175,55,.32);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.btn:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 12px 32px rgba(212,175,55,.45); }
+.btn:active{ transform:translateY(0) scale(.98); }
+.btn.ghost{ background:transparent; border:1.5px solid var(--gold); color:var(--gold-light); box-shadow:none; }
+
+h2.h-title{
+  font-family:var(--font-display); font-weight:400; color:var(--gold-light);
+  font-size:clamp(1.7rem, 5.4vw, 2.6rem); margin-bottom:10px;
+}
+.h-sub{ font-family:var(--font-ui); font-weight:300; font-size:.95rem; color:#cdbf9a; max-width:440px; margin:0 auto 40px; line-height:1.6; }
+
+/* ---------- birthday candle unlock ---------- */
+.candle-wrap{ position:relative; width:130px; height:210px; margin:10px auto 26px; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent; transition:transform .15s ease; }
+.candle-wrap:active{ transform:scale(.96); }
+.candle-svg{ width:100%; height:100%; overflow:visible; }
+.flame{ transform-origin:65px 62px; opacity:.06; transition:opacity .35s ease, filter .35s ease; filter:drop-shadow(0 0 0px var(--marigold)); }
+.flame.lit{ animation:flicker 1.4s ease-in-out infinite; }
+@keyframes flicker{
+  0%,100%{ transform:scale(1) rotate(-1deg); }
+  50%{ transform:scale(1.1) rotate(2deg); }
+}
+.spark{ opacity:0; }
+.spark.pop{ animation:sparkpop .55s ease forwards; }
+@keyframes sparkpop{
+  0%{ opacity:1; transform:scale(.2) translateY(0); }
+  100%{ opacity:0; transform:scale(1.3) translateY(-22px); }
+}
+.candle-count{ font-family:var(--font-ui); letter-spacing:.1em; font-size:.8rem; color:var(--gold-light); opacity:.85; margin-bottom:10px; }
+.unlock-msg{ font-family:var(--font-body); font-style:italic; color:var(--peacock-light); font-size:1rem; min-height:26px; }
+
+/* ---------- lotus gift ---------- */
+.lotus-wrap{ position:relative; width:170px; height:170px; margin:6px auto 30px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.petal-shape{ transform-box:fill-box; transform-origin:50% 100%; transition:transform .8s cubic-bezier(.2,.8,.2,1); }
+.lotus-wrap.bloom .p1{ transform:rotate(-46deg) translateY(-6px); }
+.lotus-wrap.bloom .p2{ transform:rotate(-23deg) translateY(-10px); }
+.lotus-wrap.bloom .p3{ transform:rotate(0deg) translateY(-14px); }
+.lotus-wrap.bloom .p4{ transform:rotate(23deg) translateY(-10px); }
+.lotus-wrap.bloom .p5{ transform:rotate(46deg) translateY(-6px); }
+.gift-card{
+  max-width:480px; margin:0 auto; padding:30px 26px; border-radius:18px;
+  background:linear-gradient(160deg, rgba(35,43,98,.55), rgba(8,11,36,.55));
+  border:1px solid rgba(212,175,55,.35); backdrop-filter:blur(6px);
+  opacity:0; max-height:0; overflow:hidden; transition:opacity .8s ease, max-height 1s ease, padding .6s ease, margin .6s ease;
+}
+.gift-card.show{ opacity:1; max-height:400px; margin-top:8px; }
+.gift-card p{ font-size:1.15rem; line-height:1.6; color:var(--cream); }
+
+/* ---------- 3D gallery wheel ---------- */
+.wheel-stage{ width:100%; max-width:640px; height:340px; perspective:1300px; margin:0 auto 18px; touch-action:pan-y; }
+.wheel{ width:100%; height:100%; position:relative; transform-style:preserve-3d; }
+.wheel.spin{ animation:wheelspin 44s linear infinite; }
+@keyframes wheelspin{ from{ transform:rotateY(0deg);} to{ transform:rotateY(360deg);} }
+.frame{
+  position:absolute; top:50%; left:50%; width:150px; height:190px;
+  margin:-95px 0 0 -75px; backface-visibility:hidden;
+}
+.frame-inner{
+  width:100%; height:150px; border-radius:10px; overflow:hidden; position:relative;
+  border:3px solid var(--gold); box-shadow:0 10px 26px rgba(0,0,0,.45), 0 0 0 5px rgba(14,110,92,.25);
+  background:linear-gradient(160deg, var(--indigo-light), var(--indigo-deep));
+  cursor:pointer;
+}
+.frame-inner img{ width:100%; height:100%; object-fit:cover; display:block; }
+.frame.img-missing img{ display:none; }
+.frame-placeholder{ display:none; }
+.frame.img-missing .frame-placeholder{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  width:100%; height:100%; color:var(--gold-light); font-family:var(--font-ui);
+}
+.frame-placeholder span{ font-size:1.5rem; }
+.frame-placeholder p{ font-size:.72rem; font-weight:500; }
+.frame-placeholder small{ font-size:.55rem; opacity:.6; }
+.frame-caption{ font-family:var(--font-ui); font-size:.72rem; color:var(--cream); opacity:.85; margin-top:8px; line-height:1.35; }
+.wheel-hint{ font-family:var(--font-ui); font-size:.72rem; color:#a99a6f; letter-spacing:.06em; margin-bottom:6px; }
+
+.lightbox{
+  position:fixed; inset:0; z-index:200; background:rgba(4,6,20,.92);
+  display:flex; align-items:center; justify-content:center; padding:26px;
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+.lightbox.show{ opacity:1; pointer-events:auto; }
+.lightbox-inner{ max-width:420px; width:100%; text-align:center; }
+.lightbox img{ width:100%; border-radius:12px; border:3px solid var(--gold); }
+.lightbox p{ font-family:var(--font-body); font-style:italic; margin-top:14px; color:var(--gold-light); }
+.lightbox-close{ margin-top:18px; }
+
+/* ---------- messages fan ---------- */
+.fan{ display:flex; flex-wrap:wrap; gap:16px; justify-content:center; max-width:760px; }
+.wish-card{
+  width:210px; padding:22px 18px; border-radius:14px 14px 14px 0;
+  background:linear-gradient(160deg, rgba(14,110,92,.22), rgba(19,26,68,.5));
+  border:1px solid rgba(212,175,55,.3);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.wish-card:hover{ transform:translateY(-8px) rotate(-1deg); box-shadow:0 14px 30px rgba(0,0,0,.4); }
+.wish-card .mark{ font-size:1.1rem; color:var(--marigold); }
+.wish-card p{ font-family:var(--font-body); font-size:1.02rem; line-height:1.5; color:var(--cream); margin-top:8px; }
+
+/* ---------- finale ---------- */
+.finale-card{
+  max-width:560px; margin:0 auto; padding:44px 30px; border-radius:20px;
+  background:linear-gradient(160deg, rgba(35,43,98,.5), rgba(8,11,36,.6));
+  border:1px solid rgba(212,175,55,.4); position:relative;
+}
+.finale-card::before, .finale-card::after{
+  content:"❁"; position:absolute; color:var(--gold); font-size:1.2rem; opacity:.7;
+}
+.finale-card::before{ top:14px; left:18px; }
+.finale-card::after{ bottom:14px; right:18px; }
+.finale-card p{ font-size:1.18rem; line-height:1.75; color:var(--cream); }
+.signoff{ font-family:var(--font-display); color:var(--gold-light); font-size:1.6rem; margin-top:24px; }
+footer{ text-align:center; padding:26px; font-family:var(--font-ui); font-size:.7rem; color:#6b6491; position:relative; z-index:3; }
+
+@media (max-width:480px){
+  .wheel-stage{ height:300px; }
+  .frame{ width:130px; height:170px; margin:-85px 0 0 -65px; }
+  .frame-inner{ height:135px; }
+}
+
+/* ---------- gift box + slideshow ---------- */
+.box-wrap{ width:150px; height:150px; margin:8px auto 22px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:transform .2s ease; }
+.box-wrap:active{ transform:scale(.95); }
+.box-wrap.opened{ animation:boxPop .6s ease; pointer-events:none; }
+@keyframes boxPop{ 0%{ transform:scale(1);} 40%{ transform:scale(1.12) rotate(-3deg);} 100%{ transform:scale(1) rotate(0deg);} }
+.box-lid{ transform-origin:85px 68px; transition:transform .6s cubic-bezier(.2,.8,.2,1); }
+.box-wrap.opened .box-lid{ transform:translateY(-24px) rotate(-10deg); }
+
+.slideshow-overlay{
+  position:fixed; inset:0; z-index:300; background:#04040d;
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .5s ease;
+}
+.slideshow-overlay.show{ opacity:1; pointer-events:auto; }
+.slideshow-video{ width:100%; height:100%; object-fit:contain; display:none; }
+.slideshow-slides{ position:absolute; inset:0; display:none; }
+.slideshow-slide{ position:absolute; inset:0; opacity:0; }
+.slideshow-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+.slide-fallback{
+  position:absolute; inset:0; display:none; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  background:linear-gradient(160deg, var(--indigo-light), var(--indigo-deep)); color:var(--gold-light); font-family:var(--font-ui);
+}
+.slide-fallback span{ font-size:2.6rem; }
+.slide-cap{
+  position:absolute; left:0; right:0; bottom:34px; text-align:center;
+  font-family:var(--font-body); font-style:italic; color:var(--cream); font-size:1.05rem;
+  text-shadow:0 2px 10px rgba(0,0,0,.7); padding:0 24px;
+}
+.slideshow-progress{ position:absolute; top:0; left:0; right:0; height:4px; background:rgba(255,255,255,.15); z-index:2; }
+.slideshow-progress-bar{ height:100%; width:0%; background:linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.slideshow-skip{
+  position:absolute; top:16px; right:16px; z-index:3; font-family:var(--font-ui); font-size:.72rem; letter-spacing:.05em;
+  color:var(--cream); background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3);
+  padding:8px 14px; border-radius:30px; cursor:pointer;
+}
+.slideshow-caption{
+  position:absolute; top:20px; left:60px; right:60px; text-align:center;
+  font-family:var(--font-display); font-size:1.1rem; color:var(--gold-light); z-index:2;
+  text-shadow:0 2px 10px rgba(0,0,0,.7);
+}
+@keyframes slideFade{
+  0%{ opacity:0; transform:scale(1.02); }
+  10%{ opacity:1; transform:scale(1); }
+  88%{ opacity:1; transform:scale(1.06); }
+  100%{ opacity:0; transform:scale(1.08); }
+}
+
+/* ---------- gated (locked) sections ---------- */
+/* Everything after the candle stays out of the page flow entirely —
+   not just hidden — so it truly cannot be scrolled to until unlocked. */
+.gated{ display:none; }
+.gated.unlocked{ display:flex; animation:gateOpen .9s ease; }
+@keyframes gateOpen{ from{ opacity:0; transform:translateY(20px);} to{ opacity:1; transform:translateY(0);} }
+
+.continue-btn{ margin-top:22px; opacity:0; transform:translateY(10px); pointer-events:none; transition:opacity .5s ease, transform .5s ease; }
+.continue-btn.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+
+.locked-hint{ font-family:var(--font-ui); font-size:.72rem; color:#8f8360; letter-spacing:.04em; margin-top:6px; opacity:.85; }
+/* ---------- music toggle ---------- */
+#musicBtn{
+  position:fixed; bottom:22px; right:22px; z-index:60;
+  width:56px; height:56px; border-radius:50%; border:1.5px solid var(--gold);
+  background:radial-gradient(circle at 35% 30%, var(--indigo-light), var(--indigo-deep));
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  box-shadow:0 8px 22px rgba(0,0,0,.4);
+  font-size:1.4rem;
+  transition:box-shadow .3s ease, opacity .3s ease;
+}
+#musicBtn.playing{ animation:spin 5s linear infinite; box-shadow:0 0 0 6px rgba(212,175,55,.15), 0 8px 22px rgba(0,0,0,.4); }
+#musicBtn.muted-icon{ filter:grayscale(.6); }
+#musicBtn.no-track{ opacity:.45; cursor:not-allowed; }
+#musicHint{
+  position:fixed; bottom:84px; right:22px; z-index:60;
+  background:var(--indigo); border:1px solid rgba(212,175,55,.4); color:var(--gold-light);
+  font-family:var(--font-ui); font-size:.68rem; padding:8px 12px; border-radius:8px;
+  max-width:180px; text-align:right; opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+#musicHint.show{ opacity:1; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= DOOR WELCOME INTRO ================= -->
+<div id="doorIntro" onclick="openDoor()">
+  <div class="door-frame">
+    <div class="door-panel door-left"><div class="door-handle"></div></div>
+    <div class="door-panel door-right"><div class="door-handle"></div></div>
+  </div>
+  <div class="door-welcome">
+    <img id="doorKrishnaImg" class="baby-krishna" src="images/krishna-door.png" alt="Baby Krishna"
+      onerror="this.onerror=null; this.style.display='none'; document.getElementById('doorKrishnaSvg').style.display='block';">
+    <svg id="doorKrishnaSvg" class="baby-krishna" style="display:none" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="60" cy="16" rx="9" ry="24" fill="#0e6e5c" opacity=".85" transform="rotate(-12 60 16)"/>
+      <circle cx="60" cy="6" r="5" fill="#e8871e"/>
+      <circle cx="60" cy="6" r="2.4" fill="#131a44"/>
+      <path d="M38 40 Q60 24 82 40 L80 50 Q60 38 40 50 Z" fill="#d4af37"/>
+      <circle cx="60" cy="56" r="26" fill="#3d5aa6"/>
+      <circle cx="37" cy="53" r="6" fill="#2e4a90"/>
+      <circle cx="83" cy="53" r="6" fill="#2e4a90"/>
+      <ellipse cx="51" cy="55" rx="3" ry="4" fill="#131a44"/>
+      <ellipse cx="69" cy="55" rx="3" ry="4" fill="#131a44"/>
+      <path d="M50 65 Q60 73 70 65" stroke="#131a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <line x1="60" y1="43" x2="60" y2="49" stroke="#f3dd8e" stroke-width="2"/>
+      <path d="M32 150 Q60 92 88 150 Z" fill="#e8871e"/>
+      <path d="M32 150 Q60 92 88 150 Z" fill="url(#dhotiStripe)" opacity=".35"/>
+      <g class="k-flute">
+        <rect x="30" y="79" width="60" height="6" rx="3" fill="#5a3418" transform="rotate(-18 60 82)"/>
+      </g>
+      <g class="k-wave">
+        <ellipse cx="92" cy="92" rx="7" ry="16" fill="#3d5aa6" transform="rotate(20 92 92)"/>
+      </g>
+      <defs>
+        <linearGradient id="dhotiStripe" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+          <stop offset="1" stop-color="#fff" stop-opacity=".3"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="door-welcome-text">Welcome 🙏</div>
+    <div class="door-welcome-sub">राधे राधे</div>
+    <div class="door-tap-hint">tap to open the door</div>
+  </div>
+</div>
+<audio id="welcomeAudio" preload="auto">
+  <source src="welcome.mp3" type="audio/mpeg">
+</audio>
+
+<div id="stars"></div>
+<div id="petals"></div>
+
+<div id="loader">
+  <div class="chakra"></div>
+  <p>gathering blessings…</p>
+</div>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <svg class="feather f1" viewBox="0 0 100 220" fill="none"><path d="M50 5C20 60 20 160 50 215C80 160 80 60 50 5Z" fill="#0e6e5c" opacity=".55"/><ellipse cx="50" cy="55" rx="16" ry="22" fill="#e8871e" opacity=".8"/><ellipse cx="50" cy="55" rx="9" ry="14" fill="#131a44"/><line x1="50" y1="70" x2="50" y2="215" stroke="#d4af37" stroke-width="2"/></svg>
+  <div class="eyebrow reveal">राधे राधे</div>
+  <div class="flute reveal">🪈</div>
+  <h1 class="title reveal">Happy Birthday<span class="name" id="heroName">Radha</span></h1>
+  <p class="subtitle reveal">A soul touched by Krishna's flute, today the whole universe pauses to celebrate you.</p>
+  <button class="btn reveal" onclick="goTo('candle')">Seek His Blessing 🪈</button>
+  <svg class="feather f2" viewBox="0 0 100 220" fill="none"><path d="M50 5C20 60 20 160 50 215C80 160 80 60 50 5Z" fill="#0e6e5c" opacity=".5"/><ellipse cx="50" cy="55" rx="16" ry="22" fill="#e85d75" opacity=".75"/><ellipse cx="50" cy="55" rx="9" ry="14" fill="#131a44"/><line x1="50" y1="70" x2="50" y2="215" stroke="#d4af37" stroke-width="2"/></svg>
+</section>
+
+<!-- ================= CANDLE UNLOCK ================= -->
+<section id="candle">
+  <div class="eyebrow reveal">A LITTLE RITUAL</div>
+  <h2 class="h-title reveal">Light the Candle</h2>
+  <p class="h-sub reveal">Tap the candle five times to light it fully before her wishes are revealed.</p>
+  <div class="candle-wrap reveal" id="candleBtn" onclick="tapCandle()">
+    <svg class="candle-svg" viewBox="0 0 130 210">
+      <!-- wick -->
+      <line x1="65" y1="42" x2="65" y2="30" stroke="#3a2b1c" stroke-width="3" stroke-linecap="round"/>
+      <!-- flame -->
+      <path id="flamePath" class="flame" d="M65 4 C50 24 52 42 65 54 C78 42 80 24 65 4Z" fill="#e8871e"/>
+      <path class="flame" d="M65 19 C58 30 59 40 65 46 C71 40 72 30 65 19Z" fill="#f3dd8e" opacity=".9"/>
+      <!-- sparks that pop on each tap -->
+      <circle class="spark" id="spark1" cx="40" cy="30" r="3" fill="#f3dd8e"/>
+      <circle class="spark" id="spark2" cx="90" cy="26" r="3" fill="#e8871e"/>
+      <circle class="spark" id="spark3" cx="65" cy="10" r="3" fill="#f3dd8e"/>
+      <!-- candle body -->
+      <rect x="45" y="42" width="40" height="130" rx="6" fill="#f8ecd4"/>
+      <rect x="45" y="42" width="40" height="130" rx="6" fill="url(#stripes)"/>
+      <rect x="45" y="60" width="40" height="10" fill="#e85d75" opacity=".85"/>
+      <rect x="45" y="90" width="40" height="10" fill="#22a68b" opacity=".85"/>
+      <rect x="45" y="120" width="40" height="10" fill="#d4af37" opacity=".85"/>
+      <rect x="45" y="150" width="40" height="10" fill="#e8871e" opacity=".85"/>
+      <defs>
+        <linearGradient id="stripes" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#000" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- base plate -->
+      <ellipse cx="65" cy="176" rx="46" ry="12" fill="#d4af37"/>
+      <ellipse cx="65" cy="172" rx="46" ry="10" fill="#f3dd8e"/>
+    </svg>
+  </div>
+  <div class="candle-count reveal" id="candleCount">0 / 5 lit</div>
+  <div class="unlock-msg reveal" id="unlockMsg"></div>
+  <button class="btn continue-btn" id="continueBtn" onclick="goTo('gift')">Continue the Celebration 🪷</button>
+  <p class="locked-hint reveal" id="lockedHint">the rest of the page unlocks once the candle is fully lit ✦</p>
+</section>
+
+<!-- ================= LOTUS GIFT ================= -->
+<section id="gift" class="gated">
+  <div class="eyebrow reveal">A GIFT, WRAPPED IN DEVOTION</div>
+  <h2 class="h-title reveal">Open the Lotus</h2>
+  <p class="h-sub reveal">Gently tap the lotus to let it bloom.</p>
+  <div class="lotus-wrap reveal" id="lotus" onclick="openLotus()">
+    <svg viewBox="0 0 170 170" width="100%" height="100%">
+      <ellipse class="petal-shape p1" cx="85" cy="150" rx="16" ry="42" fill="#e8637d" transform="rotate(-70 85 150)"/>
+      <ellipse class="petal-shape p2" cx="85" cy="150" rx="17" ry="46" fill="#f0899c" transform="rotate(-35 85 150)"/>
+      <ellipse class="petal-shape p3" cx="85" cy="150" rx="18" ry="50" fill="#f3dd8e"/>
+      <ellipse class="petal-shape p4" cx="85" cy="150" rx="17" ry="46" fill="#f0899c" transform="rotate(35 85 150)"/>
+      <ellipse class="petal-shape p5" cx="85" cy="150" rx="16" ry="42" fill="#e8637d" transform="rotate(70 85 150)"/>
+      <circle cx="85" cy="140" r="12" fill="#e8871e"/>
+    </svg>
+  </div>
+  <div class="gift-card reveal" id="giftCard">
+    <p id="giftText"></p>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="gated">
+  <div class="eyebrow reveal">MOMENTS, LIKE PEARLS ON A MALA</div>
+  <h2 class="h-title reveal">Birthday Girl</h2>
+  <p class="wheel-hint reveal">drag to turn the wheel · tap a photo to open</p>
+  <div class="wheel-stage reveal" id="wheelStage">
+    <div class="wheel spin" id="wheel"></div>
+  </div>
+</section>
+
+<!-- ================= MESSAGES ================= -->
+<section id="messages" class="gated">
+  <div class="eyebrow reveal">WORDS FOR HER</div>
+  <h2 class="h-title reveal">Little Blessings</h2>
+  <div class="fan reveal" id="fan"></div>
+</section>
+
+<!-- ================= GIFT BOX / SLIDESHOW ================= -->
+<section id="giftbox" class="gated">
+  <div class="eyebrow reveal">ONE LAST SURPRISE</div>
+  <h2 class="h-title reveal">Open Your Gift</h2>
+  <p class="h-sub reveal">A little something before we say goodbye…</p>
+  <div class="box-wrap reveal" id="giftBox" onclick="openGiftBox()">
+    <svg class="box-svg" viewBox="0 0 170 170" width="100%" height="100%">
+      <defs>
+        <linearGradient id="boxShade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#000" stop-opacity=".18"/>
+          <stop offset="1" stop-color="#000" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect x="35" y="80" width="100" height="70" rx="6" fill="#e8637d"/>
+      <rect x="35" y="80" width="100" height="70" rx="6" fill="url(#boxShade)"/>
+      <rect x="78" y="80" width="14" height="70" fill="#f3dd8e"/>
+      <g class="box-lid">
+        <path d="M85 62 C 60 28, 38 40, 48 60 C 58 76, 78 70, 85 62 Z" fill="#22a68b"/>
+        <path d="M85 62 C 110 28, 132 40, 122 60 C 112 76, 92 70, 85 62 Z" fill="#22a68b"/>
+        <rect x="28" y="60" width="114" height="26" rx="6" fill="#c94f66"/>
+        <rect x="78" y="60" width="14" height="26" fill="#f3dd8e"/>
+      </g>
+    </svg>
+  </div>
+  <p class="locked-hint reveal" id="giftBoxHint">tap the gift to unwrap it 🎁</p>
+</section>
+
+<!-- ================= FINALE ================= -->
+<section id="finale" class="gated">
+  <div class="eyebrow reveal">FROM THE HEART</div>
+  <div class="finale-card reveal">
+    <p id="finalMessage"></p>
+    <div class="signoff">Radhe Radhe 🙏</div>
+  </div>
+  <button class="btn ghost reveal" style="margin-top:30px;" onclick="replay()">Replay ✨</button>
+</section>
+
+<footer>made with devotion, for a birthday blessed by Govinda</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxCap"></p>
+    <button class="btn ghost lightbox-close" onclick="closeLightbox(event)">Close</button>
+  </div>
+</div>
+
+<!-- ================= GIFT SLIDESHOW OVERLAY ================= -->
+<div class="slideshow-overlay" id="slideshowOverlay">
+  <div class="slideshow-progress"><div class="slideshow-progress-bar" id="slideshowProgressBar"></div></div>
+  <div class="slideshow-caption" id="slideshowCaption"></div>
+  <button class="slideshow-skip" id="slideshowSkip" onclick="closeSlideshow()">Skip ✕</button>
+  <video class="slideshow-video" id="slideshowVideo" playsinline></video>
+  <div class="slideshow-slides" id="slideshowSlides"></div>
+</div>
+
+<!-- ================= MUSIC ================= -->
+<div id="musicHint"></div>
+<div id="musicBtn" title="Play music" onclick="toggleMusic()">🎵</div>
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ============================================================
+   ✦✦✦  EDIT EVERYTHING BELOW TO PERSONALIZE THE WEBSITE  ✦✦✦
+   ============================================================ */
+const CONFIG = {
+  // The birthday girl's name
+  name: "Ruplakshmi",
+
+  // Opening line that appears after the lotus blooms
+  giftMessage: "On this day, Vrindavan itself seems to smile a little brighter — because you were born. May Krishna's flute always guide you home to peace, and his blessings walk beside you all year long. 🦚",
+
+  // 5–10 short wishes shown as little cards. Add / remove / edit freely.
+  wishes: [
+    "May Radha Rani's grace fill every corner of your life. 🌸",
+    "Like the Yamuna, may your days flow calm, clear, and blessed.",
+    "May Krishna's flute always call you toward joy. 🪈",
+    "Wishing you the peace of Vrindavan and the warmth of His smile.",
+    "May your devotion light your path, today and always. 🪔",
+    "Happy Birthday to a heart that carries Krishna within it. 💛"
+  ],
+
+  // Caption shown at the top of the 30-second gift slideshow/video
+  giftVideoCaption: "Every moment with you is a gift 🎁",
+
+  // The long, heartfelt closing message
+  finalMessage: "Today isn't just your birthday — it's a reminder of how I am blessed Happy Birthday Meri Pyari Pyari Hamesha Khush Rho Aage badhte rho mehnat krto Achha Se Padhai kro Agle Saal Achha kro mehnat ka fal jarur milega hum sab tumhare Sath hai khyaal rakho apna JanmDin Ki Khoob Saari SubhKamnaaye  . 🦚🪈",
+
+  // 5–10 photos. Place image files in an "images" folder next to this
+  // HTML file, named photo1.jpg, photo2.jpg, photo3.jpg … and so on.
+  // If a photo is missing, a placeholder frame will show instead —
+  // so it's safe to leave these as-is and add real photos later.
+  photos: [
+    { src: "images/photo1.jpg", caption: "Her radiant smile ✨" },
+    { src: "images/photo2.jpg", caption: "A moment of devotion 🪔" },
+    { src: "images/photo3.jpg", caption: "Cutie Pie " },
+    { src: "images/photo4.jpg", caption: "Pure joy 🌸" },
+    { src: "images/photo5.jpg", caption: "Pyari Pyari " },
+    { src: "images/photo6.jpg", caption: "A cherished memory" }
+  ]
+};
+/* ============================================================
+   ✦✦✦  YOU DON'T NEED TO EDIT ANYTHING BELOW THIS LINE  ✦✦✦
+   ============================================================ */
+
+document.getElementById('heroName').textContent = CONFIG.name;
+document.getElementById('giftText').textContent = CONFIG.giftMessage;
+document.getElementById('finalMessage').textContent = CONFIG.finalMessage;
+document.title = "Happy Birthday " + CONFIG.name + " 🪈";
+
+// ---- loader ----
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 1400);
+});
+
+// ---- door welcome intro ----
+function speakRadhe(){
+  if(!('speechSynthesis' in window)) return;
+  try{
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance('');
+    u.rate = 0.85; u.pitch = 1.05;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+function playRadheSound(){
+  const audio = document.getElementById('welcomeAudio');
+  let handled = false;
+  try{
+    audio.currentTime = 0;
+    audio.volume = 0.9;
+    const p = audio.play();
+    if(p && p.catch){
+      p.then(() => { handled = true; }).catch(() => { if(!handled){ handled = true; speakRadhe(); } });
+    }
+  }catch(e){ handled = true; speakRadhe(); }
+  // if the audio element has no usable source, fall back to speech
+  setTimeout(() => { if(!handled && (audio.error || audio.readyState === 0)){ handled = true; speakRadhe(); } }, 250);
+}
+
+let doorOpened = false;
+function openDoor(){
+  if(doorOpened) return;
+  doorOpened = true;
+  const intro = document.getElementById('doorIntro');
+  intro.classList.add('greet');
+  playRadheSound();
+  setTimeout(() => { intro.classList.add('open'); }, 550);
+  setTimeout(() => { intro.classList.add('hide'); }, 550 + 1300);
+}
+
+// ---- scroll reveal ----
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.2 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+function goTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+// ---- candle interaction ----
+// The rest of the page is truly locked out of the DOM flow (display:none via
+// the .gated class) until the candle has been lit all 5 times.
+let candleTaps = 0;
+function tapCandle(){
+  if(candleTaps >= 5) return;
+  candleTaps++;
+  document.getElementById('candleCount').textContent = candleTaps + " / 5 lit";
+  document.querySelectorAll('#candleBtn .flame').forEach(f => {
+    f.classList.add('lit');
+    f.style.opacity = Math.min(1, candleTaps/5 + 0.15);
+  });
+
+  // pop a little spark each tap, and grow the flame's glow
+  const spark = document.getElementById('spark' + (((candleTaps - 1) % 3) + 1));
+  if(spark){
+    spark.classList.remove('pop');
+    void spark.offsetWidth; // restart animation
+    spark.classList.add('pop');
+  }
+  document.querySelectorAll('#candleBtn .flame').forEach(f => {
+    f.style.filter = `drop-shadow(0 0 ${6 + candleTaps * 3}px var(--marigold))`;
+  });
+
+  if(candleTaps < 5){
+    document.getElementById('unlockMsg').textContent = candleTaps + " flicker" + (candleTaps>1?'s':'') + " of light so far…";
+  } else {
+    document.getElementById('unlockMsg').textContent = "May every wish you make come true 🪔";
+    document.getElementById('lockedHint').style.display = 'none';
+    spawnBurst(document.getElementById('candleBtn'), ['🎂','✨','🌼']);
+    unlockRest();
+  }
+}
+
+function unlockRest(){
+  document.querySelectorAll('.gated').forEach(sec => sec.classList.add('unlocked'));
+  document.getElementById('continueBtn').classList.add('show');
+  // give gated sections' reveal-on-scroll elements a chance to be observed
+  document.querySelectorAll('.gated .reveal').forEach(el => io.observe(el));
+}
+
+// ---- lotus gift ----
+function openLotus(){
+  const lotus = document.getElementById('lotus');
+  lotus.classList.add('bloom');
+  document.getElementById('giftCard').classList.add('show');
+  spawnBurst(lotus, ['🌸','🪷','✨']);
+}
+
+// ---- gift box: 30s video/slideshow ----
+const SLIDESHOW_DURATION = 30000; // ms
+let slideshowTimer = null;
+
+function openGiftBox(){
+  const box = document.getElementById('giftBox');
+  box.classList.add('opened');
+  document.getElementById('giftBoxHint').style.display = 'none';
+  spawnBurst(box, ['🎁','✨','🎉']);
+  setTimeout(startSlideshow, 450);
+}
+
+function startSlideshow(){
+  const overlay = document.getElementById('slideshowOverlay');
+  const video = document.getElementById('slideshowVideo');
+  const bar = document.getElementById('slideshowProgressBar');
+  const slides = document.getElementById('slideshowSlides');
+
+  pauseMusicForSlideshow();
+
+  document.getElementById('slideshowCaption').textContent = CONFIG.giftVideoCaption || '';
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  slides.style.display = 'none';
+  slides.innerHTML = '';
+  video.style.display = 'block';
+  video.src = 'gift-video.mp4';
+
+  overlay.classList.add('show');
+
+  let started = false;
+  const startBar = () => {
+    requestAnimationFrame(() => {
+      bar.style.transition = `width ${SLIDESHOW_DURATION}ms linear`;
+      bar.style.width = '100%';
+    });
+  };
+
+  video.onloadeddata = () => {
+    started = true;
+    video.currentTime = 0;
+    video.play().catch(() => { if(!started) return; runPhotoSlideshow(); });
+    startBar();
+    slideshowTimer = setTimeout(closeSlideshow, SLIDESHOW_DURATION);
+  };
+  video.onended = closeSlideshow;
+  video.onerror = () => { if(!started) runPhotoSlideshow(); };
+
+  // if no gift-video.mp4 is found, fall back to the photo slideshow quickly
+  setTimeout(() => { if(!started && video.readyState === 0) runPhotoSlideshow(); }, 700);
+}
+
+function runPhotoSlideshow(){
+  const video = document.getElementById('slideshowVideo');
+  const slides = document.getElementById('slideshowSlides');
+  const bar = document.getElementById('slideshowProgressBar');
+  video.pause();
+  video.style.display = 'none';
+  slides.style.display = 'block';
+  slides.innerHTML = '';
+
+  const photos = CONFIG.photos.length ? CONFIG.photos : [{src:'', caption:'Happy Birthday 🎂'}];
+  const n = photos.length;
+  const per = SLIDESHOW_DURATION / n / 1000; // seconds per photo
+
+  photos.forEach((p, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'slideshow-slide';
+    slide.style.animation = `slideFade ${per}s ease forwards`;
+    slide.style.animationDelay = (i * per) + 's';
+    slide.innerHTML = `
+      <img src="${p.src}" alt="${p.caption}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="slide-fallback"><span>🪷</span><p>${p.caption}</p></div>
+      <div class="slide-cap">${p.caption}</div>`;
+    slides.appendChild(slide);
+  });
+
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  requestAnimationFrame(() => {
+    bar.style.transition = `width ${SLIDESHOW_DURATION}ms linear`;
+    bar.style.width = '100%';
+  });
+
+  if(slideshowTimer) clearTimeout(slideshowTimer);
+  slideshowTimer = setTimeout(closeSlideshow, SLIDESHOW_DURATION);
+}
+
+function closeSlideshow(){
+  if(slideshowTimer){ clearTimeout(slideshowTimer); slideshowTimer = null; }
+  const overlay = document.getElementById('slideshowOverlay');
+  const video = document.getElementById('slideshowVideo');
+  video.pause();
+  overlay.classList.remove('show');
+  resumeMusicAfterSlideshow();
+  setTimeout(() => {
+    document.getElementById('slideshowSlides').innerHTML = '';
+    goTo('finale');
+  }, 400);
+}
+
+// ---- particle burst ----
+function spawnBurst(el, emojis){
+  const rect = el.getBoundingClientRect();
+  for(let i=0;i<10;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = (rect.left + rect.width/2 + (Math.random()*160-80)) + 'px';
+    p.style.top = (rect.top + window.scrollY) + 'px';
+    p.style.setProperty('--drift', (Math.random()*120-60)+'px');
+    p.style.animationDuration = (2 + Math.random()*1.5) + 's';
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    document.getElementById('petals').appendChild(p);
+    p.addEventListener('animationend', () => p.remove());
+  }
+}
+
+// ---- ambient falling petals ----
+const ambientEmojis = ['🪶','🌸','✨'];
+setInterval(() => {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.style.left = (Math.random()*100) + 'vw';
+  p.style.top = '-40px';
+  p.style.setProperty('--drift', (Math.random()*100-50)+'px');
+  p.style.animationDuration = (7 + Math.random()*5) + 's';
+  p.style.fontSize = (14 + Math.random()*12) + 'px';
+  p.textContent = ambientEmojis[Math.floor(Math.random()*ambientEmojis.length)];
+  document.getElementById('petals').appendChild(p);
+  p.addEventListener('animationend', () => p.remove());
+}, 1400);
+
+// ---- 3D photo wheel ----
+const wheel = document.getElementById('wheel');
+const n = CONFIG.photos.length;
+const radius = Math.max(190, n * 34);
+CONFIG.photos.forEach((photo, i) => {
+  const angle = (360 / n) * i;
+  const frame = document.createElement('div');
+  frame.className = 'frame';
+  frame.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+  frame.innerHTML = `
+    <div class="frame-inner" onclick="openLightbox(${i})">
+      <img src="${photo.src}" alt="${photo.caption}" onerror="this.closest('.frame').classList.add('img-missing')">
+      <div class="frame-placeholder"><span>🪶</span><p>Photo ${i+1}</p><small>${photo.src}</small></div>
+    </div>
+    <div class="frame-caption">${photo.caption}</div>`;
+  wheel.appendChild(frame);
+});
+
+// drag to rotate
+let dragging = false, startX = 0, currentRotation = 0, dragRotation = 0;
+const stage = document.getElementById('wheelStage');
+function pointerDown(x){ dragging = true; startX = x; wheel.classList.remove('spin'); wheel.style.transform = `rotateY(${dragRotation}deg)`; }
+function pointerMove(x){ if(!dragging) return; const delta = (x - startX) * 0.4; wheel.style.transform = `rotateY(${dragRotation + delta}deg)`; }
+function pointerUp(x){ if(!dragging) return; const delta = (x - startX) * 0.4; dragRotation += delta; dragging = false; }
+stage.addEventListener('mousedown', e => pointerDown(e.clientX));
+window.addEventListener('mousemove', e => pointerMove(e.clientX));
+window.addEventListener('mouseup', e => pointerUp(e.clientX));
+stage.addEventListener('touchstart', e => pointerDown(e.touches[0].clientX), {passive:true});
+stage.addEventListener('touchmove', e => pointerMove(e.touches[0].clientX), {passive:true});
+stage.addEventListener('touchend', e => pointerUp(dragRotation));
+
+// lightbox
+function openLightbox(i){
+  const photo = CONFIG.photos[i];
+  const img = document.getElementById('lightboxImg');
+  img.src = photo.src;
+  img.onerror = () => { img.style.display='none'; };
+  img.onload = () => { img.style.display='block'; };
+  document.getElementById('lightboxCap').textContent = photo.caption;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox(e){
+  if(e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close') || e.target.closest('.lightbox-close')){
+    document.getElementById('lightbox').classList.remove('show');
+  }
+}
+
+// ---- messages fan ----
+const fan = document.getElementById('fan');
+CONFIG.wishes.forEach(w => {
+  const card = document.createElement('div');
+  card.className = 'wish-card';
+  card.innerHTML = `<div class="mark">🪷</div><p>${w}</p>`;
+  fan.appendChild(card);
+});
+
+// ---- replay ----
+function replay(){
+  candleTaps = 0;
+  document.getElementById('candleCount').textContent = "0 / 5 lit";
+  document.getElementById('unlockMsg').textContent = "";
+  document.getElementById('lockedHint').style.display = '';
+  document.querySelectorAll('#candleBtn .flame').forEach(f => {
+    f.classList.remove('lit');
+    f.style.opacity = 0.06;
+    f.style.filter = 'drop-shadow(0 0 0px var(--marigold))';
+  });
+  document.getElementById('continueBtn').classList.remove('show');
+  document.querySelectorAll('.gated').forEach(sec => sec.classList.remove('unlocked'));
+  document.getElementById('lotus').classList.remove('bloom');
+  document.getElementById('giftCard').classList.remove('show');
+  if(slideshowTimer){ clearTimeout(slideshowTimer); slideshowTimer = null; }
+  document.getElementById('slideshowOverlay').classList.remove('show');
+  document.getElementById('slideshowSlides').innerHTML = '';
+  document.getElementById('giftBox').classList.remove('opened');
+  document.getElementById('giftBoxHint').style.display = '';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ---- background music ----
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+const musicHint = document.getElementById('musicHint');
+let musicReady = true;
+
+bgMusic.addEventListener('error', () => {
+  musicReady = false;
+  musicBtn.classList.add('no-track');
+  musicBtn.title = 'Add a music.mp3 file to enable music';
+});
+
+function showMusicHint(text){
+  musicHint.textContent = text;
+  musicHint.classList.add('show');
+  clearTimeout(showMusicHint._t);
+  showMusicHint._t = setTimeout(() => musicHint.classList.remove('show'), 2600);
+}
+
+function toggleMusic(){
+  if(!musicReady){
+    showMusicHint('Add a file named "music.mp3" next to this HTML file to enable music 🎵');
+    return;
+  }
+  if(bgMusic.paused){
+    bgMusic.volume = 0.55;
+    bgMusic.play().then(() => {
+      musicBtn.classList.add('playing');
+      musicBtn.classList.remove('muted-icon');
+      musicBtn.textContent = '🎵';
+    }).catch(() => {
+      showMusicHint('Tap again to start the music 🎵');
+    });
+  } else {
+    bgMusic.pause();
+    musicBtn.classList.remove('playing');
+    musicBtn.classList.add('muted-icon');
+    musicBtn.textContent = '🔇';
+  }
+}
+
+function markMusicPlaying(){
+  musicBtn.classList.add('playing');
+  musicBtn.classList.remove('muted-icon');
+  musicBtn.textContent = '🎵';
+}
+function markMusicPaused(){
+  musicBtn.classList.remove('playing');
+  musicBtn.classList.add('muted-icon');
+  musicBtn.textContent = '🔇';
+}
+
+// ---- auto-play music as soon as the site opens ----
+function tryAutoplayMusic(){
+  if(!musicReady) return;
+  bgMusic.volume = 0.55;
+  const p = bgMusic.play();
+  if(p && p.then){
+    p.then(markMusicPlaying).catch(() => {
+      // most mobile browsers block silent autoplay — start on the visitor's
+      // very first tap/click anywhere on the page instead
+      const startOnFirstTouch = () => {
+        if(!musicReady) return;
+        bgMusic.play().then(markMusicPlaying).catch(() => {});
+      };
+      document.addEventListener('click', startOnFirstTouch, { once:true });
+      document.addEventListener('touchstart', startOnFirstTouch, { once:true });
+    });
+  }
+}
+tryAutoplayMusic();
+
+// ---- pause music automatically while the gift slideshow/video is open ----
+let musicWasPlayingBeforeSlideshow = false;
+function pauseMusicForSlideshow(){
+  musicWasPlayingBeforeSlideshow = musicReady && !bgMusic.paused;
+  if(musicWasPlayingBeforeSlideshow){
+    bgMusic.pause();
+    markMusicPaused();
+  }
+}
+function resumeMusicAfterSlideshow(){
+  if(musicWasPlayingBeforeSlideshow && musicReady){
+    bgMusic.play().then(markMusicPlaying).catch(() => {});
+  }
+  musicWasPlayingBeforeSlideshow = false;
+}
+</script>
+</body>
+</html>
